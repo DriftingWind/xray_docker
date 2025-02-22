@@ -1,23 +1,23 @@
-name: xray_docker_reality
+name: xray_docker_xhttp_reality
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 20 */2 * *'  # UTC 20:00  UTC+8 04:00
+    - cron: '0 21 */2 * *'  # UTC 21:00  UTC+8 05:00
   push:
     paths:
-      - 'reality/Dockerfile'
-      - '.github/workflows/xray_docker_reality.yml'
-      - 'reality/entrypoint.sh'
-      - 'reality/config.json'
-      - 'reality/VERSION'
+      - 'xhttp_reality/Dockerfile'
+      - '.github/workflows/xray_docker_xhttp_reality.yml'
+      - 'xhttp_reality/entrypoint.sh'
+      - 'xhttp_reality/config.json'
+      - 'xhttp_reality/VERSION'
   pull_request:
     paths:
-      - 'reality/Dockerfile'
-      - '.github/workflows/xray_docker_reality.yml'
-      - 'reality/entrypoint.sh'
-      - 'reality/config.json'
-      - 'reality/VERSION'
+      - 'xhttp_reality/Dockerfile'
+      - '.github/workflows/xray_docker_xhttp_reality.yml'
+      - 'xhttp_reality/entrypoint.sh'
+      - 'xhttp_reality/config.json'
+      - 'xhttp_reality/VERSION'
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
       - name: Extract first line of commit message
         shell: bash
         run: |
-          VERSION=$(cat reality/VERSION)
+          VERSION=$(cat xhttp_reality/VERSION)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Get latest Xray-core version (including pre-release)
@@ -52,10 +52,10 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4.0.0
         with:
-          context: ./reality
-          file: ./reality/Dockerfile
+          context: ./xhttp_reality
+          file: ./xhttp_reality/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           tags: |
-            wulabing/xray_docker_reality:${{env.VERSION}}-ubuntu-22.04-xray-${{env.XRAY_VERSION}}
-            wulabing/xray_docker_reality:latest
+            wulabing/xray_docker_xhttp_reality:${{env.VERSION}}-ubuntu-22.04-xray-${{env.XRAY_VERSION}}
+            wulabing/xray_docker_xhttp_reality:latest
           push: true
