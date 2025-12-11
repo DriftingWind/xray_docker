@@ -1,3 +1,15 @@
+## DriftingWind forked （自用）
+修改内容：
+ 1. 手动 Actions，推送到 ghcr.io
+ 2. 参考 xray 原项目，调整了一下编译环境
+ 3. 因编译时出错，暂时取消除amd64以外平台的版本（只编译amd64，耗时从30多分钟锐减到1分半）
+
+[![xray_docker_reality_docker_image_build](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_reality.yml/badge.svg)](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_reality.yml)
+[![xray_docker_xhttp_reality_docker_image_build](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_xhttp_reality.yml/badge.svg)](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_xhttp_reality.yml)
+
+以下是原 README.MD 内容
+* * *
+
 ## xray_docker_reality
 xray reality docker 镜像
 

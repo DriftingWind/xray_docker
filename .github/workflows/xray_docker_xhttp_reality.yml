@@ -4,20 +4,20 @@ on:
   workflow_dispatch:
   #schedule:
   #  - cron: '0 21 */2 * *'  # UTC 21:00  UTC+8 05:00
-  push:
-    paths:
-      - 'xhttp_reality/Dockerfile'
-      - '.github/workflows/xray_docker_xhttp_reality.yml'
-      - 'xhttp_reality/entrypoint.sh'
-      - 'xhttp_reality/config.json'
-      - 'xhttp_reality/VERSION'
-  pull_request:
-    paths:
-      - 'xhttp_reality/Dockerfile'
-      - '.github/workflows/xray_docker_xhttp_reality.yml'
-      - 'xhttp_reality/entrypoint.sh'
-      - 'xhttp_reality/config.json'
-      - 'xhttp_reality/VERSION'
+  #push:
+  #  paths:
+  #    - 'xhttp_reality/Dockerfile'
+  #    - '.github/workflows/xray_docker_xhttp_reality.yml'
+  #    - 'xhttp_reality/entrypoint.sh'
+  #    - 'xhttp_reality/config.json'
+  #    - 'xhttp_reality/VERSION'
+  #pull_request:
+  #  paths:
+  #    - 'xhttp_reality/Dockerfile'
+  #    - '.github/workflows/xray_docker_xhttp_reality.yml'
+  #    - 'xhttp_reality/entrypoint.sh'
+  #    - 'xhttp_reality/config.json'
+  #    - 'xhttp_reality/VERSION'
 
 jobs:
   build:
@@ -55,6 +55,7 @@ jobs:
         with:
           context: ./xhttp_reality
           file: ./xhttp_reality/Dockerfile
+          #platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           platforms: linux/amd64
           tags: |
             ghcr.io/driftingwind/xray_docker_xhttp_reality:${{env.VERSION}}-ubuntu-latest-xray-${{env.XRAY_VERSION}}
