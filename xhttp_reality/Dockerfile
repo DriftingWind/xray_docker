@@ -1,7 +1,7 @@
 # builder
 FROM golang:alpine AS builder
-LABEL maintainer="wulabing <wulabing@gmail.com>"
-LABEL version="0.0.29"
+LABEL maintainer="wulabing <wulabing@gmail.com> - DriftingWind Mod"
+LABEL version="0.0.32"
 
 
 #ENV GOPROXY=https://goproxy.cn,direct

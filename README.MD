@@ -1,3 +1,77 @@
+# DriftingWind forked (自用)
+## 修改内容：
+ 1. 手动 Actions，推送到 ghcr.io
+ 2. 参考 xray 原项目，调整了一下编译环境。只编译 amd64 版本，加快编译速度
+ 3. 适当缩短镜像 tag 和链接地址，也为了和 wulabing 大佬原版做区分
+ 4. 添加 docker-compose.yml 参考内容等
+
+[![xray_docker_reality_docker_image_build](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_reality.yml/badge.svg)](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_reality.yml)
+[![xray_docker_xhttp_reality_docker_image_build](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_xhttp_reality.yml/badge.svg)](https://github.com/DriftingWind/xray_docker/actions/workflows/xray_docker_xhttp_reality.yml)
+
+## reality 参考 docker-compose.yml
+```YAML
+services:
+  reality:
+    image: ghcr.io/driftingwind/xray_docker_reality:latest
+    container_name: reality
+    restart: always
+    ports:
+      - "20443:443" # 宿主机端口和下面的 EXTERNAL_PORT 要同步修改
+    environment:
+      EXTERNAL_PORT: "20443"
+      DEST: ""
+      SERVERNAMES: ""
+      # 下面三个变量可以在运行一次容器后，将随机生成的值填入来固化
+      UUID: ""
+      PRIVATEKEY: ""
+      PUBLICKEY: ""
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+```
+
+## xhttp 参考 docker-compose.yml
+```YAML
+services:
+  xhttp:
+    image: ghcr.io/driftingwind/xray_docker_xhttp_reality:latest
+    restart: always
+    container_name: xhttp
+    ports:
+      - '30443:443' # 宿主机端口和下面的 EXTERNAL_PORT 要同步修改
+    environment:
+      EXTERNAL_PORT: "30443"
+      DEST: ""
+      SERVERNAMES: ""
+      # 下面四个变量可以在运行一次容器后，将随机生成的值填入来固化
+      UUID: ""
+      PRIVATEKEY: ""
+      PUBLICKEY: ""
+      XHTTP_PATH: ""
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+```
+## 升级脚本 update.sh
+```BASH
+#!/bin/bash
+set -e
+echo "🧩 Stopping old containers..."
+docker compose down
+
+echo "⬇️ Pulling latest images..."
+docker compose pull
+
+echo "🚀 Starting containers..."
+docker compose up -d
+
+echo "✅ Update complete!"
+```
+
+以下是原 README.MD 内容
+* * *
 ## xray_docker_reality
 xray reality docker 镜像
 
