@@ -80,7 +80,7 @@
         "settings": {
           "clients": [
             {
-              "flow": "",
+              "flow": "xtls-rprx-vision",
               "id": "xx"
             }
           ],

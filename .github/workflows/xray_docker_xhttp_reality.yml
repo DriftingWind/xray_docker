@@ -58,6 +58,6 @@ jobs:
 #          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           platforms: linux/amd64
           tags: |
-            ghcr.io/driftingwind/xray_docker_xhttp_reality:${{env.VERSION}}-xray-${{env.XRAY_VERSION}}
-            ghcr.io/driftingwind/xray_docker_xhttp_reality:latest
+            ${{ github.ref_name == 'master' && format('ghcr.io/driftingwind/xray_docker_xhttp_reality:{0}-xray-{1}', env.VERSION, env.XRAY_VERSION) || '' }}
+            ${{ github.ref_name == 'master' && 'ghcr.io/driftingwind/xray_docker_xhttp_reality:latest' || 'ghcr.io/driftingwind/xray_docker_xhttp_reality:test' }}
           push: true
